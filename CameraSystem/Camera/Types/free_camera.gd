@@ -31,7 +31,22 @@ func _process(_delta: float) -> void:
 	if Input.is_key_pressed(KEY_E):
 		input_dir.y -= 1
 	
-	transform.origin += input_dir.normalized() * MoveSpeed * _delta
+	if input_dir != Vector3.ZERO:
+		input_dir = input_dir.normalized()
+		
+		# 获取节点的本地坐标轴
+		var forward: Vector3 = -transform.basis.z  # 节点的前方向
+		var right: Vector3 = transform.basis.x     # 节点的右方向
+		var up: Vector3 = transform.basis.y        # 节点的上方向
+		
+		# 根据输入组合移动方向
+		var move_dir: Vector3 = Vector3.ZERO
+		move_dir += forward * input_dir.z  # W/S 前后
+		move_dir += right * input_dir.x    # A/D 左右
+		move_dir += up * input_dir.y       # Q/E 上下
+		
+		# 应用移动
+		transform.origin += move_dir * MoveSpeed * _delta
 
 func _input(event: InputEvent) -> void:
 	if !BeContolled:
