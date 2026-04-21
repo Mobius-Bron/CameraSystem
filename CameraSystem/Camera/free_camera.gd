@@ -1,3 +1,4 @@
+## 可移动摄像机
 class_name FreeCamera
 extends CameraBase
 
@@ -14,7 +15,6 @@ func _process(_delta: float) -> void:
 	if !BeContolled:
 		return
 	
-	print("Hello")
 	## 玩家输入部分
 	var input_dir: Vector3 = Vector3.ZERO
 	

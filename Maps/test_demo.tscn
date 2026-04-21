@@ -2,18 +2,111 @@
 
 [ext_resource type="PackedScene" uid="uid://igqvqvb676cs" path="res://Core/Character/character_base.tscn" id="1_kaaj5"]
 [ext_resource type="PackedScene" uid="uid://l21rttskie1j" path="res://CameraSystem/Camera/free_camera.tscn" id="2_0ovbx"]
+[ext_resource type="Script" uid="uid://cgwd8vilijct8" path="res://Maps/debug_path_following.gd" id="2_5gp2d"]
+[ext_resource type="PackedScene" uid="uid://j4hpkvcoi65j" path="res://CameraSystem/System/camera_manager.tscn" id="3_rxwu8"]
+[ext_resource type="PackedScene" uid="uid://dwc7046lp7e1v" path="res://CameraSystem/Camera/static_camera.tscn" id="5_rmsc8"]
+[ext_resource type="PackedScene" uid="uid://bgmq7h12jpdvt" path="res://CameraSystem/Camera/tracking_camera.tscn" id="6_sm3f2"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_r67wt"]
 
+[sub_resource type="Curve3D" id="Curve3D_0ovbx"]
+closed = true
+bake_interval = 20.88
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 1.422, 0, 3.505, 0, 0, 0, 0, 0, 0, 5.22, 0, 4.762, 0, 0, 0, 0, 0, 0, 7.545, 0, 2.739, 0, 0, 0, 0, 0, 0, 7.674, 0, 0.124, 0, 0, 0, 0, 0, 0, 6.604, 0, -2.09, 0, 0, 0, 0, 0, 0, 4.425, 0, -2.791, 0, 0, 0, 0, 0, 0, 2.093, 0, -1.647, 0, 0, 0, 0, 0, 0, 0.597, 0, -0.983, 0, 0, 0, 0, 0, 0, -1.059, 0, 0.482, 0, 0, 0, 0, 0, 0, -2.89, 0, 1.503, 0, 0, 0, 0, 0, 0, -5.486, 0, 1.765, 0, 0, 0, 0, 0, 0, -6.838, 0, -1.289, 0, 0, 0, 0, 0, 0, -5.258, 0, -3.349, 0, 0, 0, 0, 0, 0, -2.997, 0, -4.362, 0, 0, 0, 0, 0, 0, -0.422, 0, -2.678, 0, 0, 0, 0, 0, 0, -0.339, 0, -0.653, 0, 0, 0, 0, 0, 0, 0.309, 0, 1.95),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 17
+
+[sub_resource type="Curve3D" id="Curve3D_rxwu8"]
+closed = true
+bake_interval = 36.72
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 8.256233, 0, 12.529542, 0, 0, 0, 0, 0, 0, 14.804832, 0, 9.006877, 0, 0, 0, 0, 0, 0, 17.175838, 0, 2.8673003, 0, 0, 0, 0, 0, 0, 17.006126, 0, -4.4222827, 0, 0, 0, 0, 0, 0, 14.804832, 0, -10.9171915, 0, 0, 0, 0, 0, 0, 8.960442, 0, -12.976012, 0, 0, 0, 0, 0, 0, 1.9870186, 0, -13.573733, 0, 0, 0, 0, 0, 0, -4.7871666, 0, -13.706561, 0, 0, 0, 0, 0, 0, -11.030041, 0, -12.311875, 0, 0, 0, 0, 0, 0, -14.882025, 0, -8.061408, 0, 0, 0, 0, 0, 0, -17.40574, 0, -2.2170143, 0, 0, 0, 0, 0, 0, -17.472153, 0, 2.8304164, 0, 0, 0, 0, 0, 0, -13.022446, 0, 8.608396, 0, 0, 0, 0, 0, 0, -7.380849, 0, 12.015522),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 14
+
 [node name="TestDemo" type="Node3D" unique_id=1746183730]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1699851805]
+[node name="Light" type="Node" parent="." unique_id=73661532]
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Light" unique_id=1625512293]
+transform = Transform3D(0.5, 0.5, -0.70710677, -0.70710677, 0.7071068, 0, 0.5, 0.5, 0.70710677, -14, 3.5353947, 14)
+light_energy = 10.0
+shadow_enabled = true
+distance_fade_enabled = true
+spot_range = 34.0
+spot_angle = 31.38608
+
+[node name="SpotLight3D3" type="SpotLight3D" parent="Light" unique_id=1922225693]
+transform = Transform3D(0.66446304, 0.66446304, -0.34202015, -0.7071068, 0.7071068, 0, 0.24184476, 0.24184476, 0.9396927, -5, 3.5353947, 15)
+light_energy = 10.0
+shadow_enabled = true
+distance_fade_enabled = true
+spot_range = 34.0
+spot_angle = 31.38608
+
+[node name="SpotLight3D4" type="SpotLight3D" parent="Light" unique_id=1642185049]
+transform = Transform3D(0.66446304, 0.66446304, 0.34202015, -0.7071068, 0.7071068, 0, -0.24184476, -0.24184476, 0.9396927, 5, 3.5353947, 15)
+light_energy = 10.0
+shadow_enabled = true
+distance_fade_enabled = true
+spot_range = 34.0
+spot_angle = 31.38608
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="Light" unique_id=1232504106]
+transform = Transform3D(0.5, 0.5, 0.70710677, -0.70710677, 0.7071068, 0, -0.5, -0.5, 0.70710677, 14, 3.5353947, 14)
+light_energy = 10.0
+shadow_enabled = true
+distance_fade_enabled = true
+spot_range = 34.0
+spot_angle = 31.292984
+
+[node name="LevelProject" type="Node" parent="." unique_id=136612471]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LevelProject" unique_id=1699851805]
 transform = Transform3D(20, 0, 0, 0, -8.742278e-07, 20, 0, -20, -8.742278e-07, 0, 0, 0)
 mesh = SubResource("QuadMesh_r67wt")
 
-[node name="CharacterBase" parent="." unique_id=112983806 instance=ExtResource("1_kaaj5")]
+[node name="Path3D" type="Path3D" parent="." unique_id=1873570478]
+curve = SubResource("Curve3D_0ovbx")
 
-[node name="FreeCamera" parent="." unique_id=1131299073 instance=ExtResource("2_0ovbx")]
+[node name="PathFollow3D" type="PathFollow3D" parent="Path3D" unique_id=1645532439]
+transform = Transform3D(0.99999297, 0, 0, 0, 0.99998224, 0, 0, 0, 0.9999901, -6.106812, 0, 1.0085784)
+progress = 26.657612
+rotation_mode = 0
+script = ExtResource("2_5gp2d")
+
+[node name="CharacterBase" parent="Path3D/PathFollow3D" unique_id=112983806 instance=ExtResource("1_kaaj5")]
+transform = Transform3D(1, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000001, 0, 0, 0)
+
+[node name="CameraManager" parent="." unique_id=459705178 node_paths=PackedStringArray("CameraList") instance=ExtResource("3_rxwu8")]
+CameraList = [NodePath("FreeCamera"), NodePath("StaticCamera_TopDown"), NodePath("StaticCamera_Left"), NodePath("StaticCamera_Fwd"), NodePath("Path3D/PathFollow3D/TrackingCamera")]
+
+[node name="FreeCamera" parent="CameraManager" unique_id=1131299073 instance=ExtResource("2_0ovbx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.1121368, 11.195218)
 MoveSpeed = 2.15
 RotationSpeed = 0.355
+
+[node name="StaticCamera_TopDown" parent="CameraManager" unique_id=122612282 instance=ExtResource("5_rmsc8")]
+transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, 0, 13, 19)
+
+[node name="StaticCamera_Left" parent="CameraManager" unique_id=1854799016 instance=ExtResource("5_rmsc8")]
+transform = Transform3D(0.25881904, 0, -0.9659259, 0, 1, 0, 0.9659259, 0, 0.25881904, -11.805971, 3.062294, 4.473168)
+
+[node name="StaticCamera_Fwd" parent="CameraManager" unique_id=421688699 instance=ExtResource("5_rmsc8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9073486e-06, 5.3178616, 16.58129)
+
+[node name="Path3D" type="Path3D" parent="CameraManager" unique_id=304137322]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+curve = SubResource("Curve3D_rxwu8")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="CameraManager/Path3D" unique_id=1102653845]
+transform = Transform3D(0.9999997, 0, 0, 0, 1, 0, 0, 0, 0.9999997, 8.256233, 0, 12.529542)
+rotation_mode = 0
+
+[node name="TrackingCamera" parent="CameraManager/Path3D/PathFollow3D" unique_id=1247208941 node_paths=PackedStringArray("TargetNode", "MovingPathFollow") instance=ExtResource("6_sm3f2")]
+TargetNode = NodePath("../../../../Path3D/PathFollow3D/CharacterBase")
+MovingPathFollow = NodePath("..")
+TargetOffest = Vector3(0, 0.5, 0)
