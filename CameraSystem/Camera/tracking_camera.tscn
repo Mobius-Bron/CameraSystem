@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bgmq7h12jpdvt"]
+
+[ext_resource type="PackedScene" uid="uid://cqgtpij6xx8gb" path="res://CameraSystem/Camera/camera_base.tscn" id="1_ayr6q"]
+
+[node name="TrackingCamera" unique_id=1131299073 instance=ExtResource("1_ayr6q")]
+script = null

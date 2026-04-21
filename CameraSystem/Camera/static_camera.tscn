@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://dwc7046lp7e1v"]
+
+[ext_resource type="PackedScene" uid="uid://cqgtpij6xx8gb" path="res://CameraSystem/Camera/camera_base.tscn" id="1_8ol01"]
+
+[node name="StaticCamera" unique_id=1131299073 instance=ExtResource("1_8ol01")]

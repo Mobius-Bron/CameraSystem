@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://claudu21lqnos"]
+
+[ext_resource type="PackedScene" uid="uid://igqvqvb676cs" path="res://Core/Character/character_base.tscn" id="1_kaaj5"]
+[ext_resource type="PackedScene" uid="uid://l21rttskie1j" path="res://CameraSystem/Camera/free_camera.tscn" id="2_0ovbx"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_r67wt"]
+
+[node name="TestDemo" type="Node3D" unique_id=1746183730]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1699851805]
+transform = Transform3D(20, 0, 0, 0, -8.742278e-07, 20, 0, -20, -8.742278e-07, 0, 0, 0)
+mesh = SubResource("QuadMesh_r67wt")
+
+[node name="CharacterBase" parent="." unique_id=112983806 instance=ExtResource("1_kaaj5")]
+
+[node name="FreeCamera" parent="." unique_id=1131299073 instance=ExtResource("2_0ovbx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.1121368, 11.195218)
+MoveSpeed = 2.15
+RotationSpeed = 0.355
