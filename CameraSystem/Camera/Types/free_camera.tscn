@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://l21rttskie1j"]
+
+[ext_resource type="PackedScene" uid="uid://cqgtpij6xx8gb" path="res://CameraSystem/Camera/Base/camera_base.tscn" id="1_2m40l"]
+[ext_resource type="Script" uid="uid://b77tykg7uhmxx" path="res://CameraSystem/Camera/Types/free_camera.gd" id="2_t2x7e"]
+
+[node name="FreeCamera" unique_id=1131299073 instance=ExtResource("1_2m40l")]
+script = ExtResource("2_t2x7e")

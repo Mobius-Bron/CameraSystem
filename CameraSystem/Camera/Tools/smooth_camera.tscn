@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://cvapp1gqyqi5i"]
+
+[ext_resource type="PackedScene" uid="uid://cqgtpij6xx8gb" path="res://CameraSystem/Camera/Base/camera_base.tscn" id="1_vvn4o"]
+[ext_resource type="Script" uid="uid://cj84aoylh81j7" path="res://CameraSystem/Camera/Tools/smooth_camera.gd" id="2_lju4y"]
+
+[node name="SmoothCamera" unique_id=1131299073 instance=ExtResource("1_vvn4o")]
+script = ExtResource("2_lju4y")

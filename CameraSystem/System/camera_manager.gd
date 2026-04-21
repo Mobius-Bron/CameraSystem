@@ -1,18 +1,37 @@
 class_name CameraManager
 extends Node
 
-@export var CameraList: Array[CameraBase] = []
-var CurrentCamera: CameraBase = null
+enum CurrentState {
+	None,
+	Smoothing
+}
 
+@onready var smooth_camera: SmoothCamera = $SmoothCamera
+
+@export var CameraList: Array[CameraBase] = []
+@export var smooth_duration: float = 1.0
+@export var curve: Curve
+
+var CurrentCamera: CameraBase = null
+var CameraState: CurrentState = CurrentState.None
+	
 func ActiveCamera(NewCamera: CameraBase) -> void:
-	if NewCamera == null:
-		return
+	if NewCamera == null: return
+	if NewCamera == CurrentCamera : return
+	if CameraState == CurrentState.Smoothing: return
 	
-	if CurrentCamera:
-		CurrentCamera.Uncontrolled()
+	CameraState = CurrentState.Smoothing
 	
-	CurrentCamera = NewCamera
+	if CurrentCamera: CurrentCamera.Uncontrolled()
+	
+	smooth_camera.ControlledBy()
+	smooth_camera.smooth_by_time(CurrentCamera, NewCamera)
+
+func on_smooth_finish(NewCamera: CameraBase) -> void:
 	NewCamera.ControlledBy()
+	CurrentCamera = NewCamera
+	
+	CameraState = CurrentState.None
 
 func TryActiveCameraByIndex(Index: int) -> void:
 	if Index < 0:
@@ -24,26 +43,22 @@ func TryActiveCameraByIndex(Index: int) -> void:
 	ActiveCamera(CameraList[Index])
 
 func _ready() -> void:
+	smooth_camera.smooth_duration = self.smooth_duration
+	smooth_camera.curve = self.curve
+	smooth_camera.smooth_finished.connect(on_smooth_finish)
+	
 	TryActiveCameraByIndex(0)
 
 func _input(event: InputEvent) -> void:
-	if Input.is_key_pressed(KEY_1):
-		TryActiveCameraByIndex(0)
-	elif Input.is_key_pressed(KEY_2):
-		TryActiveCameraByIndex(1)
-	elif Input.is_key_pressed(KEY_3):
-		TryActiveCameraByIndex(2)
-	elif Input.is_key_pressed(KEY_4):
-		TryActiveCameraByIndex(3)
-	elif Input.is_key_pressed(KEY_5):
-		TryActiveCameraByIndex(4)
-	elif Input.is_key_pressed(KEY_6):
-		TryActiveCameraByIndex(5)
-	elif Input.is_key_pressed(KEY_7):
-		TryActiveCameraByIndex(6)
-	elif Input.is_key_pressed(KEY_8):
-		TryActiveCameraByIndex(7)
-	elif Input.is_key_pressed(KEY_9):
-		TryActiveCameraByIndex(8)
-	elif Input.is_key_pressed(KEY_0):
-		TryActiveCameraByIndex(9)
+	if event is InputEventKey and event.pressed:
+		match event.keycode:
+			KEY_1: TryActiveCameraByIndex(0)
+			KEY_2: TryActiveCameraByIndex(1)
+			KEY_3: TryActiveCameraByIndex(2)
+			KEY_4: TryActiveCameraByIndex(3)
+			KEY_5: TryActiveCameraByIndex(4)
+			KEY_6: TryActiveCameraByIndex(5)
+			KEY_7: TryActiveCameraByIndex(6)
+			KEY_8: TryActiveCameraByIndex(7)
+			KEY_9: TryActiveCameraByIndex(8)
+			KEY_0: TryActiveCameraByIndex(9)

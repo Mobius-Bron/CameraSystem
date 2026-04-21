@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://bgmq7h12jpdvt"]
+
+[ext_resource type="PackedScene" uid="uid://cqgtpij6xx8gb" path="res://CameraSystem/Camera/Base/camera_base.tscn" id="1_ayr6q"]
+[ext_resource type="Script" uid="uid://bpybtcoolg0ru" path="res://CameraSystem/Camera/Types/tracking_camera.gd" id="2_hrr4m"]
+
+[node name="TrackingCamera" unique_id=1131299073 instance=ExtResource("1_ayr6q")]
+script = ExtResource("2_hrr4m")
+MoveSpeed = 2.0
+TargetOffest = Vector3(0, 0, 0)
