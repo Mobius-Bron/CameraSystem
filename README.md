@@ -1,2 +1,10 @@
 # CameraSystem
 基于godot4.6的摄像机系统，可用于类似舞台、剧情等需要运镜的场景。
+
+使用方式
+该系统的全部核心功能在CameraSystem文件夹下，只需要迁移这个文件夹就可以在其他项目使用。
+
+使用步骤
+1.为场景添加CameraSystem/Manager文件夹下的camera_manager节点，根据需要添加CameraSystem/Camera/Types文件夹下的可用摄像机类。
+2.其中free_camera为可移动摄像机，static_camera为静态摄像机，tracking_camera为追踪摄像机。tracking_camera需要在节点检查器中根据需求设置曲线追踪器和摄像机的跟踪目标（可以设置偏移值）。
+3.完成场景设置和摄像机设置后，为camera_manager节点设置平滑过渡的时间和曲线方式（若无则默认线性），然后将摄像机填入摄像机数组，会根据数组的位置自动分配键盘1-0作为控制按键。

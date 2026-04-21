@@ -9,8 +9,8 @@ enum CurrentState {
 @onready var smooth_camera: SmoothCamera = $SmoothCamera
 
 @export var CameraList: Array[CameraBase] = []
-@export var smooth_duration: float = 1.0
-@export var curve: Curve
+@export var smooth_time: float = 1.0
+@export var curve: Curve = null
 
 var CurrentCamera: CameraBase = null
 var CameraState: CurrentState = CurrentState.None
@@ -43,7 +43,7 @@ func TryActiveCameraByIndex(Index: int) -> void:
 	ActiveCamera(CameraList[Index])
 
 func _ready() -> void:
-	smooth_camera.smooth_duration = self.smooth_duration
+	smooth_camera.smooth_duration = self.smooth_time
 	smooth_camera.curve = self.curve
 	smooth_camera.smooth_finished.connect(on_smooth_finish)
 	
