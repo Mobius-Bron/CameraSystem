@@ -13,7 +13,7 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	if TargetNode != null:
-		self.look_at(TargetNode.position)
+		self.look_at(TargetNode.global_position + TargetOffest)
 	
 	if MovingPathFollow != null:
 		MovingPathFollow.progress += _delta * MoveSpeed
